@@ -33,6 +33,7 @@ package Swagger::Schema::KubernetesSchema;
 
   object properties => (isa => 'Swagger::Schema::KubernetesSchema');
 
+  array x_kubernetes_group_version_kind => (isa => 'Swagger::Schema::KubernetesGroupVersionKind', location => 'x-kubernetes-group-version-kind');
   array x_kubernetes_list_map_keys => (isa => 'Str', location => 'x-kubernetes-list-map-keys');
   key x_kubernetes_list_type => (isa => 'Str', location => 'x-kubernetes-list-type');
   key x_kubernetes_patch_merge_key => (isa => 'Str', location => 'x-kubernetes-patch-merge-key');

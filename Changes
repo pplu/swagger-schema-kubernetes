@@ -1,2 +1,5 @@
+0.02 
+ - Expose x-kubernetes-group-version-kind in definitions
+
 0.01 2018-01-03
  - First release

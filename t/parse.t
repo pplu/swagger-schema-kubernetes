@@ -55,6 +55,13 @@ my $test_swagger = <<EOF;
     "required": [
      "name"
     ],
+    "x-kubernetes-group-version-kind": [
+     {
+      "group": "apiregistration.k8s.io",
+      "kind": "APIServiceList",
+      "version": "v1beta1"
+     }
+    ],
     "properties": {
      "ports": {
       "description": "",
@@ -85,6 +92,9 @@ EOF
   cmp_ok($schema->paths->{ "/api/v1/componentstatuses" }->get->x_kubernetes_group_version_kind->kind, 'eq', 'ComponentStatus');
   cmp_ok($schema->paths->{ "/api/v1/componentstatuses" }->get->x_kubernetes_group_version_kind->version, 'eq', 'v1');
 
+  cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->x_kubernetes_group_version_kind->[0]->group, 'eq', 'apiregistration.k8s.io');
+  cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->x_kubernetes_group_version_kind->[0]->kind, 'eq', 'APIServiceList');
+  cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->x_kubernetes_group_version_kind->[0]->version, 'eq', 'v1beta1');
   cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->properties->{ ports }->x_kubernetes_list_type, 'eq', 'map');
   cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->properties->{ ports }->x_kubernetes_list_map_keys->[0], 'eq', 'containerPort');
   cmp_ok($schema->definitions->{ "io.k8s.api.core.v1.Container" }->properties->{ ports }->x_kubernetes_list_map_keys->[1], 'eq', 'protocol');
