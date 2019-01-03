@@ -40,7 +40,7 @@ package Swagger::Schema::KubernetesSchema;
 
 package Swagger::Schema::Kubernetes;
   use MooseX::DataModel;
-  our $VERSION = '0.01';
+  our $VERSION = '0.02';
   extends 'Swagger::Schema';
   object paths => (isa => 'Swagger::Schema::KubernetesPath', required => 1);
   object definitions => (isa => 'Swagger::Schema::KubernetesSchema');
